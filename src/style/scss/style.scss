@@ -1,0 +1,141 @@
+@import 'vars';
+
+html, body {
+    min-height: 100%; 
+}
+
+body {
+    @extend %main-font;
+    font-weight: 500;
+    font-size: 14px;
+    background-color: $dark_1;
+    color: $light_1;
+}
+
+
+a, button{
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+button{
+    background-color: inherit;
+}
+
+
+.container{
+    max-width: 1274px;
+    width: 100%;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+section{
+    background-color: $dark_2;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    width: 100%;
+}
+
+main{
+    flex-grow: 1;
+}
+
+
+
+// BANNER
+.top{
+    width: 100%;
+    height: 420px;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.banner, .item, .busket{
+    width: 950px;
+    height: 100%;
+}
+
+// ITEMS
+h4{
+    font-size: 20px;
+    font-weight: 600;
+}
+.items{
+    padding: 25px 22px 23px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    &-btn{
+        background-color: $main;
+        border-radius: 6px;
+        padding: 9px 20px;
+    }
+}
+
+//CARD
+.cards{
+    display: flex;
+    gap: 20px;
+}
+.card{
+    width: 230px;
+    background-color: $dark_1;
+    border-radius: 8px;
+    min-height: 220px;
+    overflow: hidden;
+
+    h6{
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    &-img{
+        height: 110px;
+    }
+
+    &-info{
+        padding: 12px 12px 8px;
+        display: flex;
+        flex-direction: column;
+
+        .card-category{
+            color: $light_2;
+            padding-top: 5px;
+            flex-grow: 1;
+        }
+
+        &_about, .card-prices{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
+    .card-prices{
+        gap: 5px;
+    }
+
+    &-price{
+        font-weight: 700;
+        font-size: 20px;
+        color: $main;
+        &_before{
+            font-size: 13px;
+            color: $secondary_1;
+            text-decoration: line-through;
+        }
+    }
+
+    &-purchased{
+        font-size: 10px;
+        color: $secondary_1;
+    }
+
+}

@@ -1,0 +1,20 @@
+// fonts
+%main-font{
+    font-family: 'Montserrat', sans-serif;
+}
+
+%hover-text{
+    color: #8B57C6;
+    transition: .4s;
+    cursor: pointer;
+}
+
+// colors
+$dark_1: #212123;
+$dark_2: #191919;
+$main: #6C3EB8;
+$main-light: #8B57C6;
+$light_1: #F6F6F7;
+$light_2: #B8B8B8;
+$secondary_1: #576067;
+$secondary_2: #616E74;

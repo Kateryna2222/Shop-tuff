@@ -1,0 +1,124 @@
+http://doc.a-level.com.ua/react-router-dom-ua
+
+npm install react-router@6 react-router-dom@6
+
+
+
+
+import {
+    createBrowserRouter
+} from "react-router-dom";
+
+const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <HomePage/>,
+      errorElement: <ErrorPage />,
+    },
+    {
+      path: "/goods",
+      element: <GoodsPage/>,
+    },
+    {
+      path: "/goods/:id",
+      element: <GoodPage/>,
+    },
+]);
+
+export default router;
+
+
+
+
+
+
+import { RouterProvider } from 'react-router-dom';
+import router from './router/router';
+
+function App() {
+
+  return (
+    <RouterProvider router={router} />
+  );
+}
+
+export default App;
+
+
+
+
+
+
+import { Link } from "react-router-dom";
+
+const pages = [
+    {
+        label: "HOME",
+        to: "/",
+    },  
+    {   
+        label: "GOODS",
+        to: "/goods",
+    },  
+    {   
+        label: "GOOD",
+        to: "/good",
+    },  
+]
+
+function Navigation() {
+
+    return (
+        <ul>
+          {pages.map((page) => (
+            <li key={page.to}>
+              <Link to={page.to}>{page.label}</Link>
+            </li>
+          ))}
+        </ul>
+    );
+  }
+  
+export default Navigation;
+
+
+
+MAKE WRAPPER PAGE 
+
+import Navigation from "./navigation";
+
+const WrapperPage = ({children}) => {
+
+    return (
+      <>
+        <header>HEADER</header>
+        <Navigation/>
+        <main>
+            {children}
+        </main>
+        <footer>FOOTER</footer>
+      </>
+    );
+  }
+  
+export default WrapperPage;
+
+SO EVERY PAGE HAS TO BE IN WrapperPage
+
+
+import { useParams } from "react-router";
+import WrapperPage from "../components/WrapperPage";
+
+function GoodPage() {
+
+  const {id} = useParams() // user http input after '/'
+
+  return (
+    <WrapperPage>
+      <h1>laptop</h1>
+      <span>price 25 {id}</span>
+    </WrapperPage>
+  );
+}
+
+export default GoodPage;
