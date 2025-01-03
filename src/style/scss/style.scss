@@ -1,5 +1,9 @@
 @import 'vars';
 
+.hide{
+    display: none;
+}
+
 html, body {
     min-height: 100%; 
 }
@@ -25,7 +29,8 @@ button{
 
 
 .container{
-    max-width: 1274px;
+    max-width: 1290px;
+    padding: 0 8px;
     width: 100%;
     margin: 0 auto;
     min-height: 100vh;
@@ -45,20 +50,176 @@ main{
 }
 
 
+//----------------------------------------------------------------------------
+.btn__disable{
+    background-color: $secondary_2;
+    color: $light_2;
+    border-radius: 6px;
+    padding: 9px 20px;
+    cursor: default;
+}
 
-// BANNER
+//----------------------------------------------------------------------------
+
+
+
+
+// ASIDE + BANNER
 .top{
     width: 100%;
     height: 420px;
     margin-bottom: 0;
     display: flex;
-    justify-content: space-between;
+    gap: 20px;
     margin-bottom: 20px;
 }
 
-.banner, .item, .busket{
+.banner, .current, .busket{
     width: 950px;
     height: 100%;
+}
+
+//BANNER
+.banner{
+    padding: 42px 0 42px 42px;
+    text-transform: uppercase;
+    position: relative;
+
+    &-text1{
+        font-weight: 900;
+        font-size: 5.5vw;
+        color: $dark_1;
+    }
+    &-text2{
+        font-size: 16px;
+        color: $secondary_2;
+        padding: 40px 0 8px;
+    }
+    &-text3{
+        font-weight: 700;
+        font-size: 42px;
+        max-width: 480px;
+        line-height: 50px;
+        padding-bottom: 24px;
+    }
+    &::before {
+        position: absolute;
+        content: '';
+        background-image: url('../../images/added.png'); 
+        background-size: contain;
+        background-repeat: no-repeat;
+        width: 430px;
+        height: 320px;
+        bottom: -20px;
+        right: 0;
+    }
+}
+
+//CURRENT ITEM
+.current{
+    padding: 24px;
+    display: flex;
+    gap: 30px;
+
+    &-gallery{
+        width: 50%;
+        background-color: rgb(160, 160, 160);
+    }
+
+    &-info{
+        width: 50%;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        padding-right: 70px;
+    }
+
+    &-title{
+        font-size: 18px;
+        padding-bottom: 10px;
+    }
+
+    &-price{
+        font-size: 20px;
+        font-weight: 700;
+        padding-bottom: 20px;
+    }
+
+    &-color{
+        color: $secondary_1;
+        padding-bottom: 16px;
+        span{
+            padding-left: 16px;
+            color: $light_1;
+        }
+    }
+
+    &-size{
+        color: $secondary_1;
+        display: flex;
+        align-items: center;
+        padding-bottom: 16px;
+        ul{
+            padding-left: 16px;
+            color: $light_1;
+            display: flex;
+            gap: 5px;
+            button{
+                background-color: $dark_1;
+                border-radius: 6px;
+                padding: 4px 8px;
+            }
+            .btn-active{
+                background-color: $main;
+            }
+        }
+    }
+
+    &-description{
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 14px;
+        color: $light_2;
+        padding-bottom: 20px;
+    }
+
+    &-btns{
+        flex-grow: 1;
+    }
+
+    &-btn__cart{
+        margin-right: 10px;
+        background-color: $main;
+        border-radius: 6px;
+        padding: 9px 20px;
+    }
+    &-btn__like{
+        background-color: $main;
+        border-radius: 6px;
+        padding: 9px 20px;
+    }
+
+    &-more{
+        display: flex;
+        justify-content: space-between;
+
+        a::after{
+            content: '';
+            display: block;
+            width: 100%;
+            height: 1px;
+            background-color: $secondary_1;
+        }
+        a:hover{
+            @extend %hover-text;
+        }
+
+        a:hover::after{
+            @extend %hover-text;
+            background-color: #8B57C6;
+        }
+
+    }
 }
 
 // ITEMS
@@ -104,11 +265,13 @@ h4{
         padding: 12px 12px 8px;
         display: flex;
         flex-direction: column;
+        min-height: 110px;
 
         .card-category{
             color: $light_2;
             padding-top: 5px;
             flex-grow: 1;
+            padding-bottom: 20px;
         }
 
         &_about, .card-prices{
@@ -139,3 +302,16 @@ h4{
     }
 
 }
+
+
+.card-trending{
+    text-align: center;
+    &__img{
+        height: 230px;
+        width: 230px;
+    }
+    h6{
+        font-size: 20px;
+    }
+}
+

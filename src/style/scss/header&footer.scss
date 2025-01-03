@@ -44,6 +44,22 @@
     }
 }
 
+.busket-btn{
+    position: relative;
+    &__count{
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        background-color: $main-light;
+        font-size: 9px;
+        border-radius: 50%;
+        font-weight: 700;
+        padding: 1px 1px 0 0;
+        right: 0;
+        bottom: -3px;
+    }
+}
+
 .header, .footer{
     display: flex;
     justify-content: space-between;

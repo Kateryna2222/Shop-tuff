@@ -19,7 +19,12 @@ const Header = () => {
             </div>
             <div className="header-choosed">
                 <button><img src={favoriteIcon} alt="liked" /></button>
-                <button><img src={busketIcon} alt="busket" /></button>
+                <button className="busket-btn">
+                    <img src={busketIcon} alt="busket"/>
+                    <div className="busket-btn__count">
+                        1
+                    </div>
+                </button>
             </div>
         </header>
     );

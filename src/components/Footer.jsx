@@ -8,7 +8,7 @@ const Footer = () => {
         <footer className="footer">
             <img src={logo} alt="logo" />
             <span>
-                Developed by <span className="footer-text">Tomkovich</span>
+                Made by <span className="footer-text">Kateryna</span>
             </span>
             <div className="footer-social-media">
                 <a href="#"><img src={youtubeIcon} alt="youtube" /></a>
