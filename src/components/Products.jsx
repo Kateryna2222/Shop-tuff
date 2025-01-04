@@ -1,13 +1,23 @@
 import Cart from "./Cart";
+import { Link } from "react-router-dom";
 
-const Products = ({title}) => {
+const Products = ({title, products=[], amount=5}) => {
+
+    const limitedProducts = products.filter((_, i) => i < amount )
+
     return (
-        <section class="items">
+        <section className="items">
             {title && <h4>{title}</h4>}
-            <ul class="cards">
-                <Cart/>
+            <ul className="cards">
+                {limitedProducts.map((item) => {
+                    return (
+                        <Link to={`/products/${item.id}`} key={item.id}>
+                            <Cart item={item}/>
+                        </Link>
+                    );
+                })}
             </ul>
-            <button class="items-btn">See more</button>
+            <button className="items-btn">See more</button>
         </section>
     );
 };

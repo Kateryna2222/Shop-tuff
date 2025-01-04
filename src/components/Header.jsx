@@ -1,14 +1,15 @@
 import logo from '../images/logo.svg';
 import userIcon from '../images/user icon.png';
 import searchIcon from '../images/search icon.svg';
-import favoriteIcon from '../images/favorite icon.svg';
-import busketIcon from '../images/busket icon.svg';
+import { Link } from 'react-router-dom';
+import {ReactComponent as FavoriteIcon} from '../images/favorite icon.svg';
+import {ReactComponent as BusketIcon} from '../images/busket icon.svg';
 
 
 const Header = () => {
     return (
         <header className="header">
-            <img src={logo} alt="loco" />
+            <Link to={'/'}><img src={logo} alt="loco" /></Link>
             <div className="header-user">
                 <img src={userIcon} alt="user" />
                 <span>Roman Kateryna</span>
@@ -18,9 +19,9 @@ const Header = () => {
                 <input type="search" placeholder="Search for anything..." />
             </div>
             <div className="header-choosed">
-                <button><img src={favoriteIcon} alt="liked" /></button>
+                <button><FavoriteIcon className="header-choosed__active"/></button>
                 <button className="busket-btn">
-                    <img src={busketIcon} alt="busket"/>
+                    <BusketIcon/>
                     <div className="busket-btn__count">
                         1
                     </div>

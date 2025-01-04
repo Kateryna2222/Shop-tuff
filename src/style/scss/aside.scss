@@ -23,17 +23,12 @@ aside{
         flex-grow: 1;
         gap: 12px;
         color: $secondary_1;
-        li:hover{
-            @extend %hover-text;
-        }
+        text-transform: capitalize;
     }
     .aside-more{
         display: flex;
         justify-content: space-between;
         color: $secondary_1;
-        a:hover{
-            @extend %hover-text;
-        }
     }
     .conditions{
         position: relative;

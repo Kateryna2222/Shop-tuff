@@ -1,18 +1,19 @@
 const Cart = ({item}) => {
+    
     return (
-        <li class="card">
-            <div class="card-img">
-                <img src="" alt="item"/>
+        <li key={item.id} className="card">
+            <div className="card-img">
+                <img src={item.images[1] || item.images[0] || item.image} alt="item"/>
             </div>
-            <div class="card-info">
-                <h6 class="card-title">Nike ZoomX 2023 lo</h6>
-                <div class="card-category">Sneakers</div>
-                <div class="card-info_about">
-                    <div class="card-prices">
-                        <span class="card-price">55$</span>
-                        <span class="card-price_before">55$</span>
+            <div className="card-info">
+                <h6 className="card-title">{item.title}</h6>
+                <div className="card-category">{item.category.name}</div>
+                <div className="card-info_about">
+                    <div className="card-prices">
+                        <span className="card-price">{item.price}$</span>
+                        <span className="card-price_before">{Math.floor(item.price * 1.4)}$</span>
                     </div>
-                    <span class="card-purchased">19 people purchased</span>
+                    <span className="card-purchased">{Math.floor(Math.random() * 25)} people purchased</span>
                 </div>
             </div>                        
         </li>

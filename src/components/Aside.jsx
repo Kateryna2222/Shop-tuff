@@ -1,19 +1,25 @@
+import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
+
 const Aside = () => {
+
+    const categories = useSelector(state => state.categories.categories)
+
     return (
         <aside>
             <h5>CATEGORIES</h5>
-            <ul class="categories">
-                <li class="category">ghgjg</li>
-                <li class="category">ghgjkljljg</li>
-                <li class="category">ghgjg</li>
-                <li class="category">ghjkklgjg</li>
-                <li class="category">ghgjhhhkkkkkkkk</li>
-                <li class="category">ghgjg</li>
-                <li class="category">ghgjg</li>
+            <ul className="categories">
+                {
+                    categories.map(({id, name}) => {
+                        return (<li key={id} className="category">
+                            <NavLink to={`/categories/${name}`}>{name}</NavLink>
+                        </li>)
+                    })
+                }
             </ul>
-            <div class="aside-more">
+            <div className="aside-more">
                 <a href="#">Help</a>
-                <a href="#" class="conditions">Terms & Conditions</a>
+                <a href="#" className="conditions">Terms & Conditions</a>
             </div>
         </aside>
     );

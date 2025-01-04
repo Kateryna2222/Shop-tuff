@@ -1,19 +1,20 @@
 import logo from '../images/logo.svg';
-import youtubeIcon from '../images/youtube.svg';
-import facebookIcon from '../images/facebook.svg';
-import instagramIcon from '../images/instagram.svg';
+import {ReactComponent as YoutubeIcon} from '../images/youtube.svg';
+import {ReactComponent as FacebookIcon} from '../images/facebook.svg';
+import {ReactComponent as InstagramIcon} from '../images/instagram.svg';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
         <footer className="footer">
-            <img src={logo} alt="logo" />
+            <Link to={'/'}><img src={logo} alt="logo" /></Link>
             <span>
                 Made by <span className="footer-text">Kateryna</span>
             </span>
             <div className="footer-social-media">
-                <a href="#"><img src={youtubeIcon} alt="youtube" /></a>
-                <a href="#"><img src={facebookIcon} alt="facebook" /></a>
-                <a href="#"><img src={instagramIcon} alt="instagram" /></a>
+                <a href="#"><YoutubeIcon className='social-media__icon'/></a>
+                <a href="#"><FacebookIcon className='social-media__icon'/></a>
+                <a href="#"><InstagramIcon className='social-media__icon'/></a>
             </div>
         </footer>
     );
