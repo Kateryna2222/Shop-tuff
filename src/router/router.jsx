@@ -2,7 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import Layout from "../pages/Layout";
 import ProductPage from "../pages/ProductPage";
-import LoadingPage from "../pages/LoadingPage";
+import CategoryPage from "../pages/CategoryPage";
+import Busket from "../pages/Busket";
 
 const router = createBrowserRouter([
     {
@@ -19,10 +20,11 @@ const router = createBrowserRouter([
             },
             {
                 path: `/categories/:name`,
+                element: <CategoryPage/>
             },
             {
-                path: '/lo',
-                element: <LoadingPage/>
+                path: `/busket`,
+                element: <Busket/>
             },
         ]
     },

@@ -42,7 +42,8 @@ const productsSlice = createSlice({
         products: [],
         filteredProduct: [],
         currentProduct: null,
-        relatedProducts: []
+        currentImg: 0,
+        relatedProducts: [],
     },
     reducers: {
         filterByPrice: (state, {payload})=>{
@@ -50,7 +51,10 @@ const productsSlice = createSlice({
         },
         filterByCategory: (state, {payload}) => {
             state.relatedProducts = state.products.filter(item => item.category.name === payload)
-        }
+        },
+        changeCurrentImg: (state, {payload}) => {
+            state.currentImg = payload
+        },
     },
     extraReducers: (builder)=>{
         builder.addCase(getProducts.fulfilled, (state, {payload}) => {
@@ -58,10 +62,11 @@ const productsSlice = createSlice({
         })
         builder.addCase(getProductById.fulfilled, (state, {payload}) => {
             state.currentProduct = payload;
+            state.currentImg = 0;
             state.loading = false
         })
     },
 })
 
-export const {filterByPrice, filterByCategory} = productsSlice.actions;
+export const {filterByPrice, filterByCategory, changeCurrentImg} = productsSlice.actions;
 export default productsSlice.reducer;

@@ -10,13 +10,13 @@ const CategorySection = ({categories, amount = 5}) => {
                     categories.map((category)=>{
                         return (
                             <li key={category.id} className="card-trending">
-                                <Link to={`categories/${category.name.toLowerCase()}`}>
+                                <Link to={`categories/${category.name}`}>
                                     <div className="card-trending__img">
                                         <img src={category.image} alt="item"/>
                                     </div>
                                 </Link>                     
                                 <h6 className="card-title">
-                                    <Link to={`categories/${category.name.toLowerCase()}`}>
+                                    <Link to={`categories/${category.name}`}>
                                         {category.name} 
                                     </Link>  
                                 </h6>                   

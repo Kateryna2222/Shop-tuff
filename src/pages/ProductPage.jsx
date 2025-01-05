@@ -11,14 +11,14 @@ const ProductPage = () => {
     const dispatch = useDispatch()
 
     useEffect(()=>{
-            dispatch(filterByCategory(currentProduct.category.name))
+        currentProduct && dispatch(filterByCategory(currentProduct.category.name))
         },[dispatch,currentProduct])
 
 
     return (
         <>
-            <Top sideComponent={CurrentProduct}/>
-            <Products title="Related products" products={relatedProducts}/>
+            <Top sideComponent={CurrentProduct}/> 
+            <Products title="Related products" products={relatedProducts} link={true}/>
         </>
     );
 };

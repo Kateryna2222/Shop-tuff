@@ -1,17 +1,30 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { useParams } from "react-router";
-import { getProductById } from "../store/productsSlice";
+import { getProductById, changeCurrentImg } from "../store/productsSlice";
+import { toggleLike } from '../store/likedSlice';
+import { toggleBusket } from "../store/busketSlice";
 
 const CurrentProduct = () => {
 
     const {id: currentId} = useParams()
-    const {currentProduct, loading} = useSelector(state => state.products)
+    const {currentProduct, loading, currentImg} = useSelector(state => state.products)
     const dispatch = useDispatch()
+
+    const sizes = [4.5, 5, 5.5]
+    const [choosedSize, setChoosedSize] = useState(0);
 
     useEffect(()=>{
         dispatch(getProductById(currentId))
     },[dispatch,currentId])
+
+
+    
+    const {likedProducts} = useSelector(state => state.liked)
+    const {productsInBusket} = useSelector(state => state.busket)
+    const isLiked = likedProducts.some(product => product.id === currentProduct.id)
+    const isInBusket = productsInBusket.some(product => product.id === currentProduct.id)
 
     if (loading || !currentProduct) {
         return <div>Loading...</div>;
@@ -20,11 +33,16 @@ const CurrentProduct = () => {
     return (
         <section className="current">
             <div className="current-gallery">
-                <div className="current-main-img">
-                    <img src="" alt=""/>
-                </div>
-                <ul className="current-images">
-                    <li><img className="current-img" src="" alt=""/></li>
+                <ul className="current-imgs">
+                    {currentProduct?.images?.map((img, i) => {
+                        if(i > 4){
+                            return null
+                        }
+                        return (
+                            <li key={i} className={i === currentImg? "current-img-main" : ''}>
+                                <img src={img} alt="not found" onClick={() => dispatch(changeCurrentImg(i))}/>
+                            </li>)
+                    })}
                 </ul>
             </div>
             <div className="current-info">
@@ -40,22 +58,29 @@ const CurrentProduct = () => {
                 <div className="current-size">
                     <span>Sizes:</span>
                     <ul>
-                        <li><button>4.5</button></li>
-                        <li><button className="btn-active">5</button></li>
-                        <li><button>5.5</button></li>
+                        {
+                            sizes.map((size, i) => {
+                                return <li><button onClick={() => setChoosedSize(size)} className={choosedSize === size? "btn-active" : ""}>{size}</button></li>
+                            })
+                        }
                     </ul>
                 </div>
                 <div className="current-description">
                     {currentProduct.description}
                 </div>
                 <div className="current-btns">
-                    <button className="current-btn__cart">Add to cart</button>
-                    <button className="current-btn__like ">Add to favorites</button> 
-                    {/*  btn__disable*/}
+                    <button onClick={()=>dispatch(toggleBusket({...currentProduct, count: 1}))}
+                            className={isInBusket? "btn__disable" : "current-btn__cart"}>
+                        {isInBusket? "Remove from busket" : "Add to busket"}
+                    </button>
+                    <button onClick={()=>dispatch(toggleLike(currentProduct))} 
+                            className={isLiked? "btn__disable" : "current-btn__like"}>
+                        Add to favorites
+                    </button> 
                 </div>
                 <div className="current-more">
                     <span className="card-purchased">19 people purchased</span>
-                    <a href="#" className="card-purchased">Find in a store</a>
+                    <Link to={'/'} className="card-purchased">Return to store</Link>
                 </div>
             </div>
         </section>

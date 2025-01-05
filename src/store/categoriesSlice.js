@@ -18,10 +18,12 @@ export const getCategories = createAsyncThunk(
     }
 )
 
+
 const categoriesSlice = createSlice({
     name: "categories",
     initialState: {
         categories: [],
+
     },
     extraReducers: (builder) => {
         builder.addCase(getCategories.fulfilled, (state, {payload}) => {
