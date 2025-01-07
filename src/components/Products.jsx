@@ -1,6 +1,6 @@
 import Cart from "./Cart";
 
-const Products = ({title, products=[], amount=5, link}) => {
+const Products = ({title, products=[], amount=5}) => {
 
     const limitedProducts = products.filter((_, i) => i < amount )
 

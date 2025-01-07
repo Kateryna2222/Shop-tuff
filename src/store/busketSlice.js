@@ -25,15 +25,19 @@ const busketSlice = createSlice({
         },
         increaseTotal: (state, {payload})=>{
             const oldTotalState = state.total - (payload.count * payload.price)
-            state.productsInBusket = state.productsInBusket.map(item => {
-                if(item.id === payload.id){
-                    item.count++
-                }
-            })
-            state.total = oldTotalState + (payload.count * payload.price);
+            const product = state.productsInBusket.find(item => item.id === payload.id)
+            if(product){
+                product.count++;
+            }
+            state.total = oldTotalState + (product.count * product.price);
         },
         disreaseTotal: (state, {payload})=>{
-            state.total = state.total - (payload.count * payload.price) + (payload * payload.price);
+            const oldTotalState = state.total - (payload.count * payload.price)
+            const product = state.productsInBusket.find(item => item.id === payload.id)
+            if(product && product.count > 1){
+                product.count--;
+            }
+            state.total = oldTotalState  + (product.count * payload.price);
         },
     }
 })

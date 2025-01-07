@@ -9,7 +9,7 @@ const Footer = () => {
         <footer className="footer">
             <Link to={'/'}><img src={logo} alt="logo" /></Link>
             <span>
-                Made by <span className="footer-text">Kateryna</span>
+                Made by <span className="footer-text">Katya</span>
             </span>
             <div className="footer-social-media">
                 <a href="#"><YoutubeIcon className='social-media__icon'/></a>

@@ -25,13 +25,16 @@ const CategoryPage = () => {
                     <input className="filterProducts-name" type="text" placeholder="Product name"/>
                     <input className="filterProducts-price" type="number" placeholder="Price from"/>
                 </form>
-                <ul className="category-page__products">
-                    {
-                        products.map(item => {
-                            return <li><Cart item={item}/></li>
-                        })
-                    }
-                </ul>
+                {
+                    products.length === 0? <div style={{fontSize: '22px', textAlign: 'center'}}>no results</div> : 
+                    <ul className="category-page__products">
+                        {
+                            products.map(item => {
+                                return <li><Cart item={item}/></li>
+                            })
+                        }
+                    </ul>
+                }
             </section>
         </>
     );

@@ -4,6 +4,7 @@ import Layout from "../pages/Layout";
 import ProductPage from "../pages/ProductPage";
 import CategoryPage from "../pages/CategoryPage";
 import Busket from "../pages/Busket";
+import Favourite from "../pages/Favourite";
 
 const router = createBrowserRouter([
     {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
             {
                 path: `/busket`,
                 element: <Busket/>
+            },
+            {
+                path: `/favourite`,
+                element: <Favourite/>
             },
         ]
     },

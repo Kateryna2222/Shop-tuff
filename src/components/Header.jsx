@@ -1,7 +1,7 @@
 import logo from '../images/logo.svg';
 import userIcon from '../images/user icon.png';
 import searchIcon from '../images/search icon.svg';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {ReactComponent as FavoriteIcon} from '../images/favorite icon.svg';
 import {ReactComponent as BusketIcon} from '../images/busket icon.svg';
 import { useSelector } from 'react-redux';
@@ -11,6 +11,10 @@ const Header = () => {
 
     const busket = useSelector(state => state.busket.productsInBusket);
     const isBusketEmpthy = busket.length === 0;
+
+    const location = useLocation()
+    const isBusket = location.pathname === '/busket';
+    const isFavourite = location.pathname === '/favourite';
 
     return (
         <header className="header">
@@ -24,9 +28,12 @@ const Header = () => {
                 <input type="search" placeholder="Search for anything..." />
             </div>
             <div className="header-choosed">
-                <button><FavoriteIcon className="header-choosed__active"/></button>
-                <Link to={'/busket'} className="busket-btn">
-                    <BusketIcon/>
+                <Link to={isFavourite? '/' : '/favourite'}>
+                    <FavoriteIcon className={isFavourite? "header-choosed__active" : "header-choosed"}/>
+                </Link>
+
+                <Link to={isBusket? '/' : '/busket'} className="busket-btn">
+                    <BusketIcon className={isBusket && 'busket-active'}/>
                     {isBusketEmpthy || <div className="busket-btn__count">{busket.length}</div>}
                 </Link>
             </div>

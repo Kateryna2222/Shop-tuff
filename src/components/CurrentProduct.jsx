@@ -23,8 +23,9 @@ const CurrentProduct = () => {
     
     const {likedProducts} = useSelector(state => state.liked)
     const {productsInBusket} = useSelector(state => state.busket)
-    const isLiked = likedProducts.some(product => product.id === currentProduct.id)
-    const isInBusket = productsInBusket.some(product => product.id === currentProduct.id)
+    const isLiked = currentProduct && likedProducts.some(product => product.id === currentProduct.id);
+    const isInBusket = currentProduct && productsInBusket.some(product => product.id === currentProduct.id);
+
 
     if (loading || !currentProduct) {
         return <div>Loading...</div>;
