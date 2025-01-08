@@ -5,7 +5,11 @@ import { Link, useLocation } from 'react-router-dom';
 import {ReactComponent as FavoriteIcon} from '../images/favorite icon.svg';
 import {ReactComponent as BusketIcon} from '../images/busket icon.svg';
 import { useSelector } from 'react-redux';
+import Registration from "../Autorisation/Registration";
 
+
+import { useContext } from 'react';
+import { Context } from '../pages/Layout';
 
 const Header = () => {
 
@@ -16,12 +20,16 @@ const Header = () => {
     const isBusket = location.pathname === '/busket';
     const isFavourite = location.pathname === '/favourite';
 
+
+    const [isOpen, setIsOpen] = useContext(Context)
+
     return (
         <header className="header">
             <Link to={'/'}><img src={logo} alt="loco" /></Link>
             <div className="header-user">
                 <img src={userIcon} alt="user" />
-                <span>Roman Kateryna</span>
+                <button onClick={()=>setIsOpen(!isOpen)}>Log in</button>
+                <Registration/>
             </div>
             <div className="header-input">
                 <img src={searchIcon} alt="Search" className="search-icon" />

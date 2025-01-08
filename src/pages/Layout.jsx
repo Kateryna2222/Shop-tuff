@@ -3,10 +3,12 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { createContext, useEffect, useState } from "react";
 
 import { getCategories } from "../store/categoriesSlice";
 import { getProducts } from "../store/productsSlice";
+
+export const Context = createContext();
 
 const Layout = () => {
 
@@ -18,15 +20,20 @@ const Layout = () => {
     }, [dispatch])
 
 
+    const [isOpen, setIsOpen] = useState(false)
+
+
     return (
         <>
-            <div className="container">
-                <Header/>
-                <main>
-                    <Outlet/>
-                </main>
-                <Footer/>
-            </div>
+            <Context.Provider value={[isOpen, setIsOpen]}>
+                <div className="container">
+                    <Header/>
+                    <main>
+                        <Outlet/>
+                    </main>
+                    <Footer/>
+                </div>
+            </Context.Provider>
         </>
     );
 };
