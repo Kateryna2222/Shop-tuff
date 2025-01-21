@@ -41,7 +41,7 @@ const Header = () => {
                 </Link>
 
                 <Link to={isBusket? '/' : '/busket'} className="busket-btn">
-                    <BusketIcon className={isBusket && 'busket-active'}/>
+                    <BusketIcon className={isBusket? 'busket-active' : ''}/>
                     {isBusketEmpthy || <div className="busket-btn__count">{busket.length}</div>}
                 </Link>
             </div>

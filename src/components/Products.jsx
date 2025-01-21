@@ -8,9 +8,9 @@ const Products = ({title, products=[], amount=5}) => {
         <section className="items">
             {title && <h4>{title}</h4>}
             <ul className="cards">
-                {limitedProducts.map((item) => {
+                {limitedProducts.map((item, index) => {
                     return (
-                        <Cart item={item}/>
+                        <Cart key={index} item={item}/>
                     );
                 })}
             </ul>

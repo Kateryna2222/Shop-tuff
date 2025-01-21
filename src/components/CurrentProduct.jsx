@@ -61,7 +61,7 @@ const CurrentProduct = () => {
                     <ul>
                         {
                             sizes.map((size, i) => {
-                                return <li><button onClick={() => setChoosedSize(size)} className={choosedSize === size? "btn-active" : ""}>{size}</button></li>
+                                return <li key={i}><button onClick={() => setChoosedSize(size)} className={choosedSize === size? "btn-active" : ""}>{size}</button></li>
                             })
                         }
                     </ul>

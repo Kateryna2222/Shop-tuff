@@ -3,38 +3,80 @@ import Banner from "../components/Banner";
 import Cart from "../components/Cart";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { filterByCategory } from "../store/productsSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { getCategoriesById } from "../store/categoriesSlice";
 
 const CategoryPage = () => {
 
-    const {name: currentCategory} = useParams();
-    const products = useSelector(state => state.products.relatedProducts);
+    const {id: currentCategory} = useParams();
+    const {categoryProducts, categoryProductsLoad, categories} = useSelector(state => state.categories);
     const dispatch = useDispatch()
 
+
+    const [firstItemOnPage, setFirstItemOnPage] = useState(0);
+    const [priceMin, setPriceMin] = useState('')
+    const [priceMax, setPriceMax] = useState('')
+    const [title, setTitle] = useState('')
+
+
     useEffect(()=>{
-        dispatch(filterByCategory(currentCategory))
-    }, [dispatch, currentCategory])
+        dispatch(getCategoriesById(
+            {
+                id: currentCategory,
+                offset: firstItemOnPage,
+            }
+        ))
+    }, [dispatch, currentCategory, firstItemOnPage])
+
+
+    const filter = () => {
+        dispatch(getCategoriesById(
+            {
+                id: currentCategory,
+                offset: firstItemOnPage,
+                price_min: priceMin || 1,
+                price_max: priceMax || 10000,
+                title: title || ''
+            }
+        ))
+    }
+
+    const categoryName = categories.find(item => item.id === Number(currentCategory))
 
     return (
         <>
             <Top sideComponent={Banner}/>
             <section className="category-page">
-                <h4>{currentCategory}</h4>
+                <h4 style={{paddingBottom: '30px'}}>{categoryName?.name || ''}</h4>
                 <form className="filterProducts">
-                    <input className="filterProducts-name" type="text" placeholder="Product name"/>
-                    <input className="filterProducts-price" type="number" placeholder="Price from"/>
+                    <input className="filterProducts-name" type="text" placeholder="Product name" value={title}
+                           onChange={(e)=>setTitle(e.target.value)}/>
+                    <input className="filterProducts-price" type="number" placeholder="Price min" min={1} value={priceMin}
+                           onChange={e => setPriceMin(e.target.value)}/>
+                    <input className="filterProducts-price" type="number" placeholder="Price max" min={1} value={priceMax}
+                           onChange={e => setPriceMax(e.target.value)}/>
+                    <button type="button" onClick={()=>{filter()}}>Filter</button>
+                    {/* by default button has submit type which reload the page, in this case we can do:
+                        1) change type to button
+                        2) call function (e)=>e.preventDefault(); dont allow reload */}
                 </form>
                 {
-                    products.length === 0? <div style={{fontSize: '22px', textAlign: 'center'}}>no results</div> : 
-                    <ul className="category-page__products">
-                        {
-                            products.map(item => {
-                                return <li><Cart item={item}/></li>
-                            })
-                        }
-                    </ul>
+                    categoryProductsLoad? <div>loading</div> :  
+                    (
+                        categoryProducts.length === 0? <div style={{fontSize: '22px', textAlign: 'center'}}>no results</div> :
+                        <ul className="category-page__products">
+                            {
+                                categoryProducts.map(item => {
+                                    return <Cart key={item.id} item={item}/>
+                                })
+                            }
+                        </ul>
+                    )
                 }
+                <div className="pagination">
+                    <button className="previus-page" disabled={firstItemOnPage === 0} onClick={()=>setFirstItemOnPage(firstItemOnPage => firstItemOnPage-10)}>previous</button>
+                    <button className="next-page" disabled={categoryProducts.length < 10} onClick={()=>setFirstItemOnPage(firstItemOnPage => firstItemOnPage+10)}>next</button>
+                </div>
             </section>
         </>
     );

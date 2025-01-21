@@ -16,7 +16,7 @@ const Busket = () => {
                     productsInBusket.length === 0? <div className="busket-empthy"><span>Your busket is empthy!</span></div> :
                     productsInBusket.map(product => {
                         return (
-                            <li className="busket-item">
+                            <li key={product.id} className="busket-item">
                                 <div className="busket-product">
                                     <div className="busket-img"><img src={product.images[0] || product.image} alt="not found"/> </div>
                                     <Link to={`/products/${product.id}`} className="busket-product__title">{product.title}</Link>

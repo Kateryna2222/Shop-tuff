@@ -13,9 +13,7 @@ const Favourite = () => {
                 <ul className="favourite-list">
                     {
                         likedProducts.map(item => {
-                            return (<li key={item.id} className="favourite-item">
-                                        <Cart item={item}/>
-                                    </li>)
+                            return <Cart key={item.id} className="favourite-item" item={item}/>
                         })
                     }
                 </ul>

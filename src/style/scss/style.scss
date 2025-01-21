@@ -283,6 +283,7 @@ h4{
 .cards{
     display: flex;
     gap: 20px;
+    flex-wrap: wrap;
 }
 .card{
     width: 230px;
@@ -402,11 +403,36 @@ h4{
     }
     form{
         padding-bottom: 60px;
+
+        button{
+            background-color: $main-light;
+            margin-left: 20px;
+            padding: 5px 15px;
+            font-size: 18px;
+            border-radius: 6px;
+        }
     }
     &__products{
         display: flex;
         gap: 20px;
         flex-wrap: wrap;
         justify-content: center;
+    }
+
+    .pagination{
+        padding: 40px 0 30px;
+        text-align: center;
+        button{
+            background-color: $main-light;
+            padding: 5px 15px;
+            font-size: 18px;
+            border-radius: 6px;
+            margin-right: 20px;
+        }
+
+        button:disabled{
+            background-color: $secondary_2;
+            cursor: default;
+        }
     }
 }

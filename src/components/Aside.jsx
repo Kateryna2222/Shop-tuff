@@ -12,7 +12,7 @@ const Aside = () => {
                 {
                     categories.map(({id, name}) => {
                         return (<li key={id} className="category">
-                            <NavLink to={`/categories/${name}`}>{name}</NavLink>
+                            <NavLink to={`/categories/${id}`}>{name}</NavLink>
                         </li>)
                     })
                 }
