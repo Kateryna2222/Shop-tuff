@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router";
 import { getProductById, changeCurrentImg } from "../store/productsSlice";
 import { toggleLike } from '../store/likedSlice';
 import { toggleBusket } from "../store/busketSlice";
+import { Context } from "../pages/Layout";
 
 const CurrentProduct = () => {
 
@@ -19,13 +20,15 @@ const CurrentProduct = () => {
         dispatch(getProductById(currentId))
     },[dispatch,currentId])
 
-
     
     const {likedProducts} = useSelector(state => state.liked)
     const {productsInBusket} = useSelector(state => state.busket)
     const isLiked = currentProduct && likedProducts.some(product => product.id === currentProduct.id);
     const isInBusket = currentProduct && productsInBusket.some(product => product.id === currentProduct.id);
 
+
+    const [isOpen, setIsOpen] = useContext(Context);
+    const {isUser} = useSelector(state => state.user)
 
     if (loading || !currentProduct) {
         return <div>Loading...</div>;
@@ -70,12 +73,12 @@ const CurrentProduct = () => {
                     {currentProduct.description}
                 </div>
                 <div className="current-btns">
-                    <button onClick={()=>dispatch(toggleBusket({...currentProduct, count: 1}))}
-                            className={isInBusket? "btn__disable" : "current-btn__cart"}>
+                    <button onClick={()=>isUser? dispatch(toggleBusket({...currentProduct, count: 1})) : setIsOpen(true)}
+                            className={isUser && isInBusket? "btn__disable" : "current-btn__cart"}>
                         {isInBusket? "Remove from busket" : "Add to busket"}
                     </button>
-                    <button onClick={()=>dispatch(toggleLike(currentProduct))} 
-                            className={isLiked? "btn__disable" : "current-btn__like"}>
+                    <button onClick={()=>isUser? dispatch(toggleLike(currentProduct)) : setIsOpen(true)} 
+                            className={isUser && isLiked? "btn__disable" : "current-btn__like"}>
                         Add to favorites
                     </button> 
                 </div>

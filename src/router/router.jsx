@@ -5,6 +5,22 @@ import ProductPage from "../pages/ProductPage";
 import CategoryPage from "../pages/CategoryPage";
 import Busket from "../pages/Busket";
 import Favourite from "../pages/Favourite";
+import ProfilePage from "../pages/ProfilePage";
+import { Context } from "../pages/Layout";
+import { useContext } from "react";
+import { useSelector } from "react-redux";
+
+const ProtectedRoute = ({ element }) => {
+    const { isUser } = useSelector(state => state.user); 
+    const [isOpen, setIsOpen] = useContext(Context)
+    
+    if (!isUser) {
+        setIsOpen(true)
+        return <HomePage/>
+    }
+
+    return element; 
+};
 
 const router = createBrowserRouter([
     {
@@ -25,11 +41,15 @@ const router = createBrowserRouter([
             },
             {
                 path: `/busket`,
-                element: <Busket/>
+                element: <ProtectedRoute element={<Busket/>}/>
             },
             {
                 path: `/favourite`,
-                element: <Favourite/>
+                element: <ProtectedRoute element={<Favourite/>}/>
+            },
+            {
+                path: `/profile`,
+                element: <ProtectedRoute element={<ProfilePage/>}/>
             },
         ]
     },
