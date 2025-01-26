@@ -16,7 +16,7 @@ function App() {
 
   return (
     <Provider store={store}>
-      <RouterProvider router={router} basename="/tothepoint_login"/>
+      <RouterProvider router={router} basename="/Shop-tuff"/>
     </Provider>
   );
 }
