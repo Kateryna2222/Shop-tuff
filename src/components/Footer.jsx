@@ -12,9 +12,9 @@ const Footer = () => {
                 Made by <span className="footer-text">Katya</span>
             </span>
             <div className="footer-social-media">
-                <a href="#"><YoutubeIcon className='social-media__icon'/></a>
-                <a href="#"><FacebookIcon className='social-media__icon'/></a>
-                <a href="#"><InstagramIcon className='social-media__icon'/></a>
+                <a href="https://fakeapi.platzi.com/" aria-label='Youtube'><YoutubeIcon className='social-media__icon'/></a>
+                <a href="https://fakeapi.platzi.com/" aria-label='Facebook'><FacebookIcon className='social-media__icon'/></a>
+                <a href="https://fakeapi.platzi.com/" aria-label='Instagram'><InstagramIcon className='social-media__icon'/></a>
             </div>
         </footer>
     );

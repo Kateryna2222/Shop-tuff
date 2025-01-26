@@ -56,9 +56,6 @@ const CategoryPage = () => {
                     <input className="filterProducts-price" type="number" placeholder="Price max" min={1} value={priceMax}
                            onChange={e => setPriceMax(e.target.value)}/>
                     <button type="button" onClick={()=>{filter()}}>Filter</button>
-                    {/* by default button has submit type which reload the page, in this case we can do:
-                        1) change type to button
-                        2) call function (e)=>e.preventDefault(); dont allow reload */}
                 </form>
                 {
                     categoryProductsLoad? <div>loading</div> :  

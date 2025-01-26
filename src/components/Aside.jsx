@@ -18,8 +18,8 @@ const Aside = () => {
                 }
             </ul>
             <div className="aside-more">
-                <a href="#">Help</a>
-                <a href="#" className="conditions">Terms & Conditions</a>
+                <a href="https://fakeapi.platzi.com/">Help</a>
+                <a href="https://fakeapi.platzi.com/" className="conditions">Terms & Conditions</a>
             </div>
         </aside>
     );
