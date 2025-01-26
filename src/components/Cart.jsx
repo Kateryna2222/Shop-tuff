@@ -12,7 +12,7 @@ const Cart = ({item}) => {
 
     const isLiked = likedProducts.some(product => product.id === item.id)
 
-    const [setIsOpen] = useContext(Context)
+    const [isOpen, setIsOpen] = useContext(Context)
     const {isUser} = useSelector(state => state.user)
     
     return (
