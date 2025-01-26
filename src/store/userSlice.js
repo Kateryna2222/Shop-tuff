@@ -76,7 +76,6 @@ export const authUser = createAsyncThunk(
                     "Authorization": `Bearer ${loginData.access_token}`
                 }
             })
-            console.log(login)
 
             if(!login.ok){
                 throw new Error(`Failed to log in user`);
