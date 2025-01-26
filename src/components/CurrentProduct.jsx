@@ -27,7 +27,7 @@ const CurrentProduct = () => {
     const isInBusket = currentProduct && productsInBusket.some(product => product.id === currentProduct.id);
 
 
-    const [isOpen, setIsOpen] = useContext(Context);
+    const [setIsOpen] = useContext(Context);
     const {isUser} = useSelector(state => state.user)
 
     if (loading || !currentProduct) {

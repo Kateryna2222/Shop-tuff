@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 
 const ProtectedRoute = ({ element }) => {
     const { isUser } = useSelector(state => state.user); 
-    const [isOpen, setIsOpen] = useContext(Context)
+    const [setIsOpen] = useContext(Context)
     
     if (!isUser) {
         setIsOpen(true)
